@@ -1,6 +1,6 @@
 import time
 
-# using Binary Search Tree data structure to hold names names
+# using Binary Search Tree data strcuture to hold names names
 # only insert & contains are needed
 class BinarySearchTree:
     def __init__(self, value):
@@ -12,17 +12,20 @@ class BinarySearchTree:
     def insert(self, value):
         #check if new value is less than current node
         if value < self.value:
+            # there is NO self.left value
             if not self.left:
                 # set NEW left child as as new value
                 self.left = BinarySearchTree(value)
             else:
                 self.left.insert(value)    
         # the new value is greater than the current node
+        # go right
         else:
             if not self.right:
                 self.right = BinarySearchTree(value)
             else: 
                 self.right.insert(value)    
+
 
     # Return True if the tree contains the value
     # False if it does not
@@ -45,6 +48,7 @@ class BinarySearchTree:
                 sub_tree_contains = self.right.contains(target)    
         return sub_tree_contains
 
+
 start_time = time.time()
 
 f = open('names/names_1.txt', 'r')
@@ -58,16 +62,19 @@ f.close()
 # Double for loops cause a nasty COMPLEXITY of O(n^2),  run takes about 6 secs 
 # duplicates = []
 
+
 duplicates = []
 
 # set 
 bst = BinarySearchTree(names_1[0])
 
-# add in names  
+#! add in names    - takes about .110 sec
 for i in range(1, len(names_1)):
     bst.insert(names_1[i])
 
-# do compare from names_2  
+# verify contains works
+
+#! do compare from names_2     - NOW takes about .12 - .14 seconds
 for i in range(len(names_2)):
     if bst.contains(names_2[i]):
         duplicates.append(names_2[i])
