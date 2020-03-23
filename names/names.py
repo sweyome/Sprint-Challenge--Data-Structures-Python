@@ -1,6 +1,6 @@
 import time
 
-# using Binary Search Tree data strcuture to hold names names
+# using Binary Search Tree data structure to hold names names
 # only insert & contains are needed
 class BinarySearchTree:
     def __init__(self, value):
@@ -12,14 +12,12 @@ class BinarySearchTree:
     def insert(self, value):
         #check if new value is less than current node
         if value < self.value:
-            # there is NO self.left value
             if not self.left:
                 # set NEW left child as as new value
                 self.left = BinarySearchTree(value)
             else:
                 self.left.insert(value)    
         # the new value is greater than the current node
-        # go right
         else:
             if not self.right:
                 self.right = BinarySearchTree(value)
